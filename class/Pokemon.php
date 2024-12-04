@@ -1,134 +1,95 @@
-<?php 
+<?php
 
-require_once 'Traits/Soins.php';
-require_once 'interfaces/Combattant.php';
-require_once 'class/Combat.php';
-require_once 'class/Attaque.php';
-
-// ------------------------------------------------------------
-// CLASSE PRINCIPALE
-// ------------------------------------------------------------
-abstract class Pokemon implements Combattant {
-    use Soins;
-   
-    public function __construct(
-        protected string $nom,
-        protected int $hp,
-        protected int $maxHp,
-        protected int $attaque,
-        protected int $defense,
-        protected string $type
-      ){}
-
-    // Méthodes de l'interface Combattant
-    public function seBattre(Combattant $oponent) {
-        $combat = new Combat($this, $oponent);
-        $combat->lancerCombat();
-    }
-
-    public function utiliserCapaciteSpeciale(Pokemon $adversaire) {
-        $this->capaciteSpeciale($adversaire);
-    }
-
-    // Les enfants devront définir cette méthode :
-    abstract public function capaciteSpeciale(Pokemon $adversaire);
-      
-    // Les enfants pourront utiliser cette méthode
-    // mais n'auront pas l'obligation de la réécrire :
-    public function attaquer(Pokemon $adversaire) {
-      $degats = $this->attaque;
-      $adversaire->recevoirDegats($degats);
-      echo $this->nom . ' attaque ' . $adversaire->nom . ' avec ' . $degats . ' de dégats' . PHP_EOL;
-    }
-
-    public function recevoirDegats(Int $degats) {
-      $this->hp -= $degats;
-    }
-
-    public function isKo() {
-      return $this->hp <= 0;
-    }
-}
-
-// ------------------------------------------------------------
-// SOUS-CLASSES
-// ------------------------------------------------------------
-class PokemonFeu extends Pokemon {
-
-  protected $type_force = 'plante';
+abstract class Pokemon{
+  private $name;
+  private $type;
+  private $pv;
+  private $puissanceattack;
+  private $defense;
 
   public function __construct(
-    string $nom,
-    int $hp, 
-    int $maxHp, 
-    int $attaque, 
+    string $name,
+    string $type,
+    int $pv,
+    int $puissanceattack,
     int $defense
-  ) {
-    parent::__construct($nom, $hp, $maxHp, $attaque, $defense);
+  ){
+    $this->setName($name);
+    $this->setType($type);
+    $this->setPv($pv);
+    $this->setPuissanceattack($puissanceattack);
+    $this->setDefense($defense);
   }
-  
 
-  public function capaciteSpeciale(Pokemon $adversaire) {
-    if ($adversaire->type === $this->type_force) {
-      $flammeche = new Attaque('Flammeche', 10 + 5, 0.7);
-      $flammeche->executer($adversaire);
-    } else {
-      $flammeche = new Attaque('Flammeche', 10, 0.7);
-      $flammeche->executer($adversaire);
-    }
+  //liste des méthodes get et set
+
+  public function getName(){
+    return $this->name;
   }
-}
 
-class PokemonPlante extends Pokemon { 
-
-  protected $type_force = 'eau';
-
-  public function __construct(
-    string $nom,
-    int $hp, 
-    int $maxHp, 
-    int $attaque, 
-    int $defense
-  ) {
-    parent::__construct($nom, $hp, $maxHp, $attaque, $defense);
+  public function setName($name){
+    $this->name = $name;
   }
-  
 
-  public function capaciteSpeciale(Pokemon $adversaire) {
-    if ($adversaire->type === $this->type_force) {
-      $fouetLiane = new Attaque('Fouet Liane', 10 + 5, 0.7);
-      $fouetLiane->executer($adversaire);
-    } else {
-      $fouetLiane = new Attaque('Fouet Liane', 10, 0.7);
-      $fouetLiane->executer($adversaire);
-    }
+  public function getType(){
+    return $this->type;
   }
-}
 
-class PokemonEau extends Pokemon {
-
-  protected $type_force = 'feu';
-
-  public function __construct(
-    string $nom,
-    int $hp, 
-    int $maxHp, 
-    int $attaque, 
-    int $defense
-  ) {
-    parent::__construct($nom, $hp, $maxHp, $attaque, $defense);
+  public function setType($type){
+    $this->type = $type;
   }
-  
-  public function capaciteSpeciale(Pokemon $adversaire) {
+
+  public function getPv(){
+    return $this->pv;
+  }
+
+  public function setPv($pv){
+    $this->pv = $pv;
+  }
+
+  public function getPuissanceattack(){
+    return $this->puissanceattack;
+  }
+
+  public function setPuissanceattack($puissanceattack){
+    $this->puissanceattack = $puissanceattack;
+  }
+
+  public function getDefense(){
+    return $this->defense;
+  }
+
+  public function setDefense($defense){
+    $this->defense = $defense;
+  }
+
+  // attaquer(adversaire) : attaque l’adversaire reçu en paramètres et réduit ses points de vie en fonction de la puissance d’attaque et de la défense.
+
+  public function attaquer($adversaire){
+    $adversaire->setPv($adversaire->getPv() - ($this->getPuissanceattack() - $adversaire->getDefense()));
+  }
+
+  //recevoirDegats(degats) : réduit les points de vie en fonction des dégâts reçus.
+
+  public function recevoirDegats($degats){
+    $this->setPv($this->getPv() - $degats);
+  }
+
+  //estKO() : vérifie si les points de vie sont à zéro.
+
+  public function estKO(){
+    return $this->getPv() <= 0;
+  }
+  //Méthode abstraite capaciteSpeciale(adversaire) : chaque sous-classe aura une capacité spéciale unique.
+  //Créer des sous-classes pour chaque type de Pokémon (par exemple, PokemonFeu, PokemonEau, PokemonPlante).
+  //Implémenter la méthode capaciteSpeciale() dans chaque sous-classe :
+  //PokemonFeu : attaque spéciale Lance-Flammes qui inflige des dégâts supplémentaires aux Pokémon Plante.
+  //PokemonEau : attaque spéciale Hydrocanon qui inflige des dégâts supplémentaires aux Pokémon Feu.
+  //PokemonPlante : attaque spéciale Fouet-Lianes qui inflige des dégâts supplémentaires aux Pokémon Eau.
+  //Utiliser des bonus et malus pour modéliser les forces et faiblesses de chaque type de Pokémon.
     
-    if ($adversaire->type === $this->type_force) {
-      $hydrocanon = new Attaque('Hydrocanon', 10 + 5, 0.7);
-      $hydrocanon->executer($adversaire);
-    } else {
-      $hydrocanon = new Attaque('Hydrocanon', 10, 0.7);
-      $hydrocanon->executer($adversaire);
-    }
-  }
-}
 
-?>
+  abstract public function capaciteSpeciale($adversaire);
+  
+  
+}
