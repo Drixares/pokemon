@@ -11,40 +11,89 @@ require_once 'class/Attaque.php';
 abstract class Pokemon implements Combattant {
     use Soins;
    
+    protected string $nom;
+    protected string $type;
+    protected int $hp;
+    protected int $maxHp;
+    protected int $attaque;
+    protected array $image;
+    // protected Capacite $capaciteNormale;
+    // protected Capacite $capaciteSpeciale;
+
     public function __construct(
-        protected string $nom,
-        protected int $hp,
-        protected int $maxHp,
-        protected int $attaque,
-        protected int $defense,
-        protected string $type
-      ){}
+      string $nom,
+      string $type,
+      int $hp, 
+      int $maxHp, 
+      int $attaque,
+      array $image 
+    ) {
+      $this->nom = $nom;
+      $this->type = $type;
+      $this->hp = $hp;
+      $this->maxHp = $maxHp;
+      $this->attaque = $attaque;
+      $this->image = $image;
+    }
+
+    public function getPointsDeVie(): int {
+      return $this->hp;
+    }
+
+    public function getNom(): string {
+      return $this->nom;
+    }
+
+    public function getMaxPointsDeVie(): int {
+      return $this->maxHp;
+    }
+
+    public function getType(): string {
+      return $this->type;
+    }
+
+    public function getImage(string $position): string {
+      if (!in_array($position, ['front', 'back'])) {
+        throw new InvalidArgumentException('Position must be either "front" or "back".');
+      }
+      return $this->image[$position];
+    }
 
     // Méthodes de l'interface Combattant
-    public function seBattre(Combattant $oponent) {
+    public function seBattre(Combattant $oponent): void {
         $combat = new Combat($this, $oponent);
         $combat->lancerCombat();
     }
 
-    public function utiliserCapaciteSpeciale(Pokemon $adversaire) {
+    public function utiliserCapaciteSpeciale(Pokemon $adversaire): void {
         $this->capaciteSpeciale($adversaire);
     }
 
     // Les enfants devront définir cette méthode :
     abstract public function capaciteSpeciale(Pokemon $adversaire);
       
-    // Les enfants pourront utiliser cette méthode
-    // mais n'auront pas l'obligation de la réécrire :
+
+    /**
+     * Attaque l’adversaire reçu en paramètres 
+     * et réduit ses points de vie en fonction de la puissance d’attaque
+     * et de la défense.
+     */
     public function attaquer(Pokemon $adversaire) {
       $degats = $this->attaque;
       $adversaire->recevoirDegats($degats);
       echo $this->nom . ' attaque ' . $adversaire->nom . ' avec ' . $degats . ' de dégats' . PHP_EOL;
     }
 
+    /**
+     * Réduit les points de vie en fonction des dégâts reçus.
+     */
     public function recevoirDegats(Int $degats) {
       $this->hp -= $degats;
     }
 
+    /**
+     * Vérifie si les points de vie sont à zéro.
+     */
     public function isKo() {
       return $this->hp <= 0;
     }
@@ -62,19 +111,19 @@ class PokemonFeu extends Pokemon {
     int $hp, 
     int $maxHp, 
     int $attaque, 
-    int $defense
+    array $image
   ) {
-    parent::__construct($nom, $hp, $maxHp, $attaque, $defense);
+    parent::__construct($nom, "feu", $hp, $maxHp, $attaque, $image);
   }
   
 
   public function capaciteSpeciale(Pokemon $adversaire) {
     if ($adversaire->type === $this->type_force) {
       $flammeche = new Attaque('Flammeche', 10 + 5, 0.7);
-      $flammeche->executer($adversaire);
+      $flammeche->executerAttaque($adversaire);
     } else {
       $flammeche = new Attaque('Flammeche', 10, 0.7);
-      $flammeche->executer($adversaire);
+      $flammeche->executerAttaque($adversaire);
     }
   }
 }
@@ -88,19 +137,19 @@ class PokemonPlante extends Pokemon {
     int $hp, 
     int $maxHp, 
     int $attaque, 
-    int $defense
+    array $image
   ) {
-    parent::__construct($nom, $hp, $maxHp, $attaque, $defense);
+    parent::__construct($nom, "plante", $hp, $maxHp, $attaque, $image);
   }
   
 
   public function capaciteSpeciale(Pokemon $adversaire) {
     if ($adversaire->type === $this->type_force) {
       $fouetLiane = new Attaque('Fouet Liane', 10 + 5, 0.7);
-      $fouetLiane->executer($adversaire);
+      $fouetLiane->executerAttaque($adversaire);
     } else {
       $fouetLiane = new Attaque('Fouet Liane', 10, 0.7);
-      $fouetLiane->executer($adversaire);
+      $fouetLiane->executerAttaque($adversaire);
     }
   }
 }
@@ -114,19 +163,19 @@ class PokemonEau extends Pokemon {
     int $hp, 
     int $maxHp, 
     int $attaque, 
-    int $defense
+    array $image
   ) {
-    parent::__construct($nom, $hp, $maxHp, $attaque, $defense);
+    parent::__construct($nom, "eau", $hp, $maxHp, $attaque, $image);
   }
   
   public function capaciteSpeciale(Pokemon $adversaire) {
     
     if ($adversaire->type === $this->type_force) {
       $hydrocanon = new Attaque('Hydrocanon', 10 + 5, 0.7);
-      $hydrocanon->executer($adversaire);
+      $hydrocanon->executerAttaque($adversaire);
     } else {
       $hydrocanon = new Attaque('Hydrocanon', 10, 0.7);
-      $hydrocanon->executer($adversaire);
+      $hydrocanon->executerAttaque($adversaire);
     }
   }
 }

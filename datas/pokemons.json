@@ -1,0 +1,68 @@
+[
+  {
+    "slug": "bulbizarre",
+    "nom": "Bulbizarre",
+    "type": "plante",
+    "attaque": 90,
+    "hp": 8,
+    "image": {
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png"
+    }
+  },
+  {
+    "slug": "salameche",
+    "nom": "Salameche",
+    "type": "feu",
+    "attaque": 120,
+    "hp": 6,
+    "image": {
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png"
+    }
+  },
+  {
+    "slug": "carapuce",
+    "nom": "Carapuce",
+    "type": "eau",
+    "attaque": 120,
+    "hp": 11,
+    "image": {
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png"
+    }
+  },
+  {
+    "slug": "jirachi",
+    "nom": "Jirachi",
+    "type": "eau",
+    "attaque": 40,
+    "hp": 4,
+    "image": {
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/385.png"
+    }
+  },
+  {
+    "slug": "pikachu",
+    "nom": "Pikachu",
+    "type": "electrique",
+    "attaque": 90,
+    "hp": 10,
+    "image": {
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png"
+    }
+  },
+  {
+    "slug": "rattata",
+    "nom": "Rattata",
+    "type": "eau",
+    "attaque": 90,
+    "hp": 9,
+    "image": {
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/19.png"
+    }
+  }
+]
