@@ -24,13 +24,7 @@ Ce projet est un rendu de fin de semaine de PHP qui consiste en un combat entre 
 git clone https://github.com/Drixares/pokemon.git
 ```
 
-2. Installer les dépendances
-
-```
-composer install
-```
-
-3. Lancer l'application
+2. Lancer l'application
 
 ```
 php -S localhost:8000
