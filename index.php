@@ -28,7 +28,7 @@ $pokemonsData = json_decode($json, true);
                     </h2>
                     <div class="grid grid-cols-3 gap-6">
                         <?php foreach ($pokemonsData as $pokemon) { ?>
-                            <label for="p1-<?= $pokemon['slug'] ?>" class="w-40 h-40 bg-emerald-800 bg-gray-50 hover:bg-gray-200 transition-colors cursor-pointer rounded-md 
+                            <label for="p1-<?= $pokemon['slug'] ?>" class="relative group w-40 h-40 bg-emerald-800 bg-gray-50 hover:bg-gray-200 transition-colors cursor-pointer rounded-md 
                                 has-[:checked]:bg-emerald-100 has-[:checked]:border has-[:checked]:border-emerald-800"
                             >
                                 <img 
@@ -37,6 +37,10 @@ $pokemonsData = json_decode($json, true);
                                     class="w-full h-full object-contain"
                                 >
                                 <input type="radio" id="p1-<?= $pokemon['slug'] ?>" name="player1" value="<?= $pokemon['slug'] ?>" class="hidden">
+                                <div class="hidden group-hover:flex absolute top-2 left-0 px-2 w-full items-center justify-between text-slate-600 text-lg">
+                                    <span><?= $pokemon['nom'] ?></span>
+                                    <span><?= $pokemon['hp'] ?></span>
+                                </div>
                             </label>
                         <?php } ?>
                     </div>
@@ -47,7 +51,7 @@ $pokemonsData = json_decode($json, true);
                     </h2>
                     <div class="grid grid-cols-3 gap-6">
                         <?php foreach ($pokemonsData as $pokemon) { ?>
-                            <label for="p2-<?= $pokemon['slug'] ?>" class="w-40 h-40 bg-emerald-800 bg-gray-50 hover:bg-gray-200 transition-colors cursor-pointer rounded-md 
+                            <label for="p2-<?= $pokemon['slug'] ?>" class="relative group w-40 h-40 bg-emerald-800 bg-gray-50 hover:bg-gray-200 transition-colors cursor-pointer rounded-md 
                                 has-[:checked]:bg-emerald-100 has-[:checked]:border has-[:checked]:border-emerald-800"
                             >
                                 <img 
@@ -56,6 +60,10 @@ $pokemonsData = json_decode($json, true);
                                     class="w-full h-full object-contain"
                                 >
                                 <input type="radio" id="p2-<?= $pokemon['slug'] ?>" name="player2" value="<?= $pokemon['slug'] ?>" class="hidden">
+                                <div class="hidden group-hover:flex absolute top-2 left-0 px-2 w-full items-center justify-between text-slate-600 text-lg">
+                                    <span><?= $pokemon['nom'] ?></span>
+                                    <span><?= $pokemon['hp'] ?></span>
+                                </div>
                             </label>
                         <?php } ?>
                     </div>
@@ -73,6 +81,7 @@ $pokemonsData = json_decode($json, true);
                      text-xl hover:bg-emerald-900 transition-colors cursor-pointer">
                     Lancer le combat
                 </button>
+                <input type="hidden" name="action" value="start">
             </div>
         </form>
     </div>
