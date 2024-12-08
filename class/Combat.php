@@ -17,27 +17,26 @@ class Combat {
     /**
      * Lance le combat et fait attaquer chaque Pokémon à tour de rôle.
      */
-    public function lancerCombat() {
+    public function lancerCombat(): void {
         $this->turn = rand(1, 2);
     }
-    
-    /**
-     * Effectue une attaque du Pokémon attaquant sur le défenseur.
-     */
-    public function tourDeCombat(Pokemon $attaquant, Pokemon $defenseur) {
-        $attaquant->attaquer($defenseur);
+
+    public function getTurn(): int {
+        return $this->turn;
     }
 
-    /**
-     * Détermine le vainqueur en fonction des points de vie restants.
-     */
-    public function determinerGagnant() {
-        if ($this->pokemon1->isKo()) {
-            return $this->pokemon2;
-        } else if ($this->pokemon2->isKo()) {
-            return $this->pokemon1;
+    public function setTurn(int $turn): void {
+        if ($turn !== 0 && $turn !== 1 && $turn !== 2) {
+            throw new InvalidArgumentException("Le tour doit être égal à 0, 1 ou 2.");
+        }
+        $this->turn = $turn;
+    }
+
+    public function determinerWinner(Pokemon $pokemon1, Pokemon $pokemon2): Pokemon {
+        if ($pokemon1->getPointsDeVie() > $pokemon2->getPointsDeVie()) {
+            return $pokemon1;
         } else {
-            return null;
+            return $pokemon2;
         }
     }
 }

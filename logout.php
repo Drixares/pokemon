@@ -1,9 +1,12 @@
 <?php
-
 session_start();
-$_SESSION = array();
 
-header("Location: index.php");
-session_destroy();
+if ($_POST['action'] && $_POST['action'] === "logout") {
+    $_SESSION = array();
+    header("Location: index.php");
+    session_destroy();
+    exit();
+}
+
 
 ?>

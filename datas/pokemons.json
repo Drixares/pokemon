@@ -3,8 +3,12 @@
     "slug": "bulbizarre",
     "nom": "Bulbizarre",
     "type": "plante",
-    "attaque": 90,
-    "hp": 8,
+    "capacite_normale": {
+      "nom": "Charge",
+      "degats": 35,
+      "precision": 0.95
+    },
+    "hp": 50,
     "image": {
       "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
       "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png"
@@ -14,8 +18,12 @@
     "slug": "salameche",
     "nom": "Salameche",
     "type": "feu",
-    "attaque": 120,
-    "hp": 6,
+    "capacite_normale": {
+      "nom": "Griffe",
+      "degats": 40,
+      "precision": 0.9
+    },
+    "hp": 50,
     "image": {
       "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
       "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png"
@@ -25,44 +33,60 @@
     "slug": "carapuce",
     "nom": "Carapuce",
     "type": "eau",
-    "attaque": 120,
-    "hp": 11,
+    "capacite_normale": {
+      "nom": "Ecume",
+      "degats": 30,
+      "precision": 1.0
+    },
+    "hp": 50,
     "image": {
       "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
       "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png"
     }
   },
   {
-    "slug": "jirachi",
-    "nom": "Jirachi",
-    "type": "eau",
-    "attaque": 40,
-    "hp": 4,
+    "slug": "herbizarre",
+    "nom": "Herbizarre",
+    "type": "plante",
+    "capacite_normale": {
+      "nom": "Tranch'Herbe",
+      "degats": 45,
+      "precision": 0.85
+    },
+    "hp": 70,
     "image": {
-      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/385.png",
-      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/385.png"
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/2.png"
     }
   },
   {
-    "slug": "pikachu",
-    "nom": "Pikachu",
-    "type": "electrique",
-    "attaque": 90,
-    "hp": 10,
+    "slug": "reptincel",
+    "nom": "Reptincel",
+    "type": "feu",
+    "capacite_normale": {
+      "nom": "Flammèche",
+      "degats": 35,
+      "precision": 0.95
+    },
+    "hp": 70,
     "image": {
-      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png"
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/5.png"
     }
   },
   {
-    "slug": "rattata",
-    "nom": "Rattata",
+    "slug": "carabaffe",
+    "nom": "Carabaffe",
     "type": "eau",
-    "attaque": 90,
-    "hp": 9,
+    "capacite_normale": {
+      "nom": "Pistolet à O",
+      "degats": 40,
+      "precision": 0.9
+    },
+    "hp": 70,
     "image": {
-      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
-      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/19.png"
+      "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+      "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/8.png"
     }
   }
 ]
