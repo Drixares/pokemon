@@ -1,5 +1,10 @@
 # Projet PHP - Pokémon
 
+Développeurs :
+
+- [Mattéo Marchelli](https://github.com/drixares)
+- [Antoine Brachet](https://github.com/antoine721)
+
 ## Description
 
 Ce projet est un rendu de fin de semaine de PHP qui consiste en un combat entre deux pokémons.
@@ -16,7 +21,7 @@ Ce projet est un rendu de fin de semaine de PHP qui consiste en un combat entre 
 1. Cloner le projet
 
 ```
-git clone https://github.com/your-username/pokemon-combat.git
+git clone https://github.com/Drixares/pokemon.git
 ```
 
 2. Installer les dépendances
